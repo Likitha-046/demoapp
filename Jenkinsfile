@@ -2,11 +2,6 @@ pipeline {
 
     agent any
 
-    tools {
-        maven 'Maven3'
-        jdk 'JDK17'
-    }
-
     stages {
 
         stage('Checkout') {
@@ -44,40 +39,15 @@ pipeline {
     post {
 
         success {
-
-            mail to: 'likithac321@gmail.com',
+            mail to: 'likitha-046@gmail.com',
                  subject: 'Jenkins Build SUCCESS',
-                 body: '''
-Hello,
-
-Your Maven Calculator project build was successful.
-
-Stages completed:
-- Checkout
-- Build
-- Test
-- Package
-- Deploy
-
-Application deployed successfully on Tomcat.
-
-Thank You
-'''
+                 body: 'Calculator project deployed successfully!'
         }
 
         failure {
-
-            mail to: 'likithac321@gmail.com',
+            mail to: 'likitha-046@gmail.com',
                  subject: 'Jenkins Build FAILED',
-                 body: '''
-Hello,
-
-Your Jenkins pipeline build failed.
-
-Please check Jenkins console output.
-
-Thank You
-'''
+                 body: 'Build failed. Check Jenkins console.'
         }
     }
 }
