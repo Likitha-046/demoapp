@@ -38,14 +38,16 @@ pipeline {
 
     post {
 
-        success {
-            mail to: 'likitha-046@gmail.com',
-                 subject: 'Jenkins Build SUCCESS',
-                 body: 'Calculator project deployed successfully!'
+    success {
+            emailext (
+                subject: "SUCCESS: ${JOB_NAME} #${BUILD_NUMBER}",
+                body: "Build, Docker Image Creation, and Deployment succeeded!\nCheck: ${BUILD_URL}",
+                to: "likitha321@gmail.com"
+            )
         }
 
         failure {
-            mail to: 'likitha-046@gmail.com',
+            mail to: 'likitha321@gmail.com',
                  subject: 'Jenkins Build FAILED',
                  body: 'Build failed. Check Jenkins console.'
         }
